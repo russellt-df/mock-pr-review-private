@@ -15,3 +15,7 @@ export function setSink(next: AnalyticsSink): void {
 export function track(name: EventName, props: Record<string, Primitive> = {}): void {
   sink.log(name, props);
 }
+
+export function identify(user: { id: string; email: string; name: string }): void {
+  sink.log('identify', user);
+}

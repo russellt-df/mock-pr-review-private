@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react';
 import { useBooking } from '../hooks/useBooking';
+import { trackBookingConfirmed } from '../analytics/bookingEvents';
 import { formatPrice } from '../utils/price';
 import { Text, View } from '../ui';
 
@@ -10,6 +11,7 @@ export function BookingConfirmationScreen({ bookingRef }: { bookingRef: string }
   if (state.status === 'error') return <Text>Something went wrong</Text>;
 
   const { booking } = state;
+  trackBookingConfirmed(booking);
   return (
     <View>
       <Text>
