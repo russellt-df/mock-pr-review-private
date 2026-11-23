@@ -13,7 +13,7 @@ describe('fetchJson', () => {
   });
 
   it('throws ApiError with status on non-2xx', async () => {
-    mockFetch.mockResolvedValue({ ok: false, status: 404, json: async () => ({}) });
+    mockFetch.mockResolvedValue({ ok: false, status: 404, text: async () => '', json: async () => ({}) });
     await expect(fetchJson('/x')).rejects.toMatchObject({ name: 'ApiError', status: 404 });
     await expect(fetchJson('/x')).rejects.toBeInstanceOf(ApiError);
   });
